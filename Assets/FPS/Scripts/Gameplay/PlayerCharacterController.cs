@@ -1,11 +1,12 @@
 ﻿using Unity.FPS.Game;
 using UnityEngine;
 using UnityEngine.Events;
+using Alteruna;
 
 namespace Unity.FPS.Gameplay
 {
     [RequireComponent(typeof(CharacterController), typeof(PlayerInputHandler), typeof(AudioSource))]
-    public class PlayerCharacterController : MonoBehaviour
+    public class PlayerCharacterController : AttributesSync
     {
         [Header("References")] [Tooltip("Reference to the main camera used for the player")]
         public Camera PlayerCamera;
@@ -129,6 +130,7 @@ namespace Unity.FPS.Gameplay
         float m_CameraVerticalAngle = 0f;
         float m_FootstepDistanceCounter;
         float m_TargetCharacterHeight;
+        private Alteruna.Avatar avatar;
 
         const float k_JumpGroundingPreventionTime = 0.2f;
         const float k_GroundCheckDistanceInAir = 0.07f;
@@ -142,6 +144,9 @@ namespace Unity.FPS.Gameplay
 
         void Start()
         {
+            avatar = gameObject.GetComponent<Alteruna.Avatar>();
+            if (!avatar.IsMe)
+                return;
             // fetch components on the same gameObject
             m_Controller = GetComponent<CharacterController>();
             DebugUtility.HandleErrorIfNullGetComponent<CharacterController, PlayerCharacterController>(m_Controller,
@@ -172,6 +177,8 @@ namespace Unity.FPS.Gameplay
 
         void Update()
         {
+            if (!avatar.IsMe)
+                return;
             // check for Y kill
             if (!IsDead && transform.position.y < KillHeight)
             {
