@@ -3,27 +3,78 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
+using Alteruna;
 
 namespace AlterunaFPS
 {
-	
-	public class Health : MonoBehaviour
+
+	public class Health : AttributesSync
 	{
 
 		public Health Parent;
-		
+
 		[Space]
 		public EfxManager.ImpactType MaterialType = EfxManager.ImpactType.Stone;
-		
+
 		public float PenetrationResistance = 0.5f;
 		public float DamageMultiplier = 1f;
-		public float HealthPoints = 0f;
-		
+		public float HealthPoints = 50f;
+
 		public UnityEvent<ushort> OnDeath;
-		
+
 		// Only apply once per health family.
 		private float _lastDamage;
 		private int _lastDamageIndex;
+
+		public Slider healthSlider, healthSlider2; // Reference to the health slider
+		public Gradient healthGradient, healthGradient2; // Optional gradient for health color
+		public Image healthFill, healthFill2; // Reference to the fill image of the slider
+		private float maxHealth; // Store the initial health points
+		public Alteruna.Avatar avatar;
+
+
+		void Start()
+		{
+			avatar = GetComponent<Alteruna.Avatar>();
+			if (avatar.IsMe)
+				healthSlider2.gameObject.SetActive(true);
+			maxHealth = HealthPoints; // Set max health
+			if (healthSlider != null)
+			{
+				healthSlider.maxValue = maxHealth;
+				healthSlider2.maxValue = maxHealth;
+				Debug.Log("max value : " + healthSlider.maxValue);
+				healthSlider.value = HealthPoints;
+				healthSlider2.value = HealthPoints;
+				BroadcastRemoteMethod("UpdateHealthBarColor");
+			}
+		}
+
+		[SynchronizableMethod]
+		private void UpdateHealthBar()
+		{
+			if (healthSlider != null)
+			{
+				healthSlider.value = HealthPoints;
+				Debug.Log("slider 1 : " + healthSlider.value);
+				healthSlider2.value = HealthPoints;
+				Debug.Log("slider 2 : " + healthSlider2.value);
+				BroadcastRemoteMethod("UpdateHealthBarColor");
+			}
+		}
+
+
+		[SynchronizableMethod]
+		private void UpdateHealthBarColor()
+		{
+			if (healthFill != null && healthGradient != null)
+			{
+				float normalizedHealth = HealthPoints / maxHealth;
+				healthFill.color = healthGradient.Evaluate(normalizedHealth);
+				healthFill2.color = healthGradient2.Evaluate(normalizedHealth);
+			}
+		}
 
 		public bool Alive
 		{
@@ -50,7 +101,7 @@ namespace AlterunaFPS
 			}
 			_lastDamage = damage;
 			_lastDamageIndex = damageIndex;
-			
+
 			// apply damage
 			if (Parent != null)
 			{
@@ -59,9 +110,13 @@ namespace AlterunaFPS
 			else if (Alive)
 			{
 				HealthPoints -= damage;
+				Debug.Log("health point = " + HealthPoints);
+				BroadcastRemoteMethod("UpdateHealthBar"); // Update the health bar
+
+				Debug.Log("health point = " + healthSlider.value);
 
 				if (transform.root.CompareTag("Player"))
-                {
+				{
 					ScoreBoard.Instance.AddScore(senderID, (int)damage);
 				}
 
@@ -69,6 +124,7 @@ namespace AlterunaFPS
 				{
 					HealthPoints = 0f;
 					OnDeath.Invoke(senderID);
+					BroadcastRemoteMethod("UpdateHealthBar");
 				}
 			}
 		}
