@@ -23,6 +23,12 @@ namespace AlterunaFPS
 			}
 		}
 
+		[SynchronizableMethod]
+		public void ResetHealth()
+		{
+			
+			_health.HealthPoints = MaxHealth;
+		}
 		private void OnDeath(ushort senderID)
 		{
 			if (_possesed)
@@ -37,7 +43,8 @@ namespace AlterunaFPS
                 }
 			}
 			
-			_health.HealthPoints = MaxHealth;
+			// _health.HealthPoints = MaxHealth;
+			BroadcastRemoteMethod("ResetHealth");
 
 			if (_offline)
 			{

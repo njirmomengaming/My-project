@@ -30,7 +30,7 @@ namespace AlterunaFPS
 		public Slider healthSlider, healthSlider2; // Reference to the health slider
 		public Gradient healthGradient, healthGradient2; // Optional gradient for health color
 		public Image healthFill, healthFill2; // Reference to the fill image of the slider
-		private float maxHealth; // Store the initial health points
+		public float maxHealth; // Store the initial health points
 		public Alteruna.Avatar avatar;
 
 
@@ -51,6 +51,11 @@ namespace AlterunaFPS
 			}
 		}
 
+		// void Update()
+		// {
+		// 	BroadcastRemoteMethod("UpdateHealthBar");
+		// }
+
 		[SynchronizableMethod]
 		private void UpdateHealthBar()
 		{
@@ -59,6 +64,19 @@ namespace AlterunaFPS
 				healthSlider.value = HealthPoints;
 				Debug.Log("slider 1 : " + healthSlider.value);
 				healthSlider2.value = HealthPoints;
+				Debug.Log("slider 2 : " + healthSlider2.value);
+				BroadcastRemoteMethod("UpdateHealthBarColor");
+			}
+		}
+
+		[SynchronizableMethod]
+		private void ResetHealthBar()
+		{
+			if (healthSlider != null)
+			{
+				healthSlider.value = healthSlider.maxValue;
+				Debug.Log("slider 1 : " + healthSlider.value);
+				healthSlider2.value = healthSlider.maxValue;
 				Debug.Log("slider 2 : " + healthSlider2.value);
 				BroadcastRemoteMethod("UpdateHealthBarColor");
 			}
@@ -124,9 +142,14 @@ namespace AlterunaFPS
 				{
 					HealthPoints = 0f;
 					OnDeath.Invoke(senderID);
-					BroadcastRemoteMethod("UpdateHealthBar");
+					BroadcastRemoteMethod("ResetHealthBar");
 				}
 			}
+		}
+
+		public void CallUpdateHealthBar()
+		{
+			BroadcastRemoteMethod("UpdateHealthBar");
 		}
 	}
 }
