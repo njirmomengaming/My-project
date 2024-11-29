@@ -466,6 +466,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &682454834297830205
 GameObject:
@@ -952,6 +953,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &995286534492419877
 GameObject:
@@ -1161,6 +1163,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &1293565531144131389
 GameObject:
@@ -1490,7 +1493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplayer: {fileID: 0}
-  _uidString: 
+  _uidString: d57a3316-9b76-440d-aa49-452e72aef1f2
   Reliability: 1
   LocalMethodBehavior: 1
   Parent: {fileID: 1709546744555315895}
@@ -1565,6 +1568,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &2009568520548188066
 GameObject:
@@ -1743,6 +1747,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &2478844259182316267
 GameObject:
@@ -2092,6 +2097,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &2918374800385159796
 GameObject:
@@ -2301,6 +2307,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &3340053741398550629
 GameObject:
@@ -2864,6 +2871,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &4206923303499134886
 GameObject:
@@ -3302,6 +3310,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &5130765456568873417
 GameObject:
@@ -3445,6 +3454,7 @@ GameObject:
   - component: {fileID: 8601427866244821771}
   - component: {fileID: 1709546744555315895}
   - component: {fileID: 4236141973411239908}
+  - component: {fileID: 2634945900945756167}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -3745,6 +3755,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 8313237333083753944}
   healthFill2: {fileID: 9026754231715476693}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!114 &4236141973411239908
 MonoBehaviour:
@@ -3764,6 +3775,27 @@ MonoBehaviour:
   LocalMethodBehavior: 1
   shieldPrefab: {fileID: 2910391213703715254}
   powerUpDuration: 5
+--- !u!114 &2634945900945756167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5337464628717331057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a85a48e7a6037ea458e491218a812728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Multiplayer: {fileID: 0}
+  _uidString: f1cc9192-97d5-4cd9-96b0-163c70dfaa34
+  Reliability: 1
+  LocalMethodBehavior: 1
+  powerUpPrefabs:
+  - {fileID: 6955483300814278903, guid: 027c5b82e2a935d4dacd05e0d2ab0047, type: 3}
+  - {fileID: 7479330538997600230, guid: f522e5580c5474449bf8b7ef93f40ce6, type: 3}
+  spawnInterval: 8
+  powerUpSpawnPointParent: {fileID: 0}
 --- !u!1 &5412847022820931746
 GameObject:
   m_ObjectHideFlags: 0
@@ -3910,6 +3942,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &5584748528139957967
 GameObject:
@@ -4088,6 +4121,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &5594006058390118412
 GameObject:
@@ -4236,6 +4270,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &5609958010402781779
 GameObject:
@@ -4611,6 +4646,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &6736679242285372353
 GameObject:
@@ -4887,6 +4923,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &7452885684144929163
 GameObject:
@@ -6150,6 +6187,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1 &9184759441858296684
 GameObject:
@@ -6297,6 +6335,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthFill: {fileID: 0}
   healthFill2: {fileID: 0}
+  maxHealth: 0
   avatar: {fileID: 0}
 --- !u!1001 &3912375684257658729
 PrefabInstance:
